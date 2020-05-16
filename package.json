@@ -1,0 +1,19 @@
+{
+  "name": "fed-e-task-template",
+  "version": "1.0.0",
+  "description": "## 简答题",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blankzust/fed-e-task-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blankzust/fed-e-task-template/issues"
+  },
+  "homepage": "https://github.com/blankzust/fed-e-task-template#readme"
+}
