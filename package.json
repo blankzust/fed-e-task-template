@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/blankzust/fed-e-task-template/issues"
   },
-  "homepage": "https://github.com/blankzust/fed-e-task-template#readme"
+  "homepage": "https://github.com/blankzust/fed-e-task-template#readme",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "node-monitor": "^0.3.11",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
 }
