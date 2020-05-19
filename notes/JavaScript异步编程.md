@@ -50,3 +50,21 @@ test:[待补充]
 - Promise.race([promises])
 只执行最先回调的promise
 test:[待补充]
+
+-------
+**Promise执行时序**
+- Promise定义的onFullfilled（成功回调）、onRejected（失败回调）会进入到微任务队列中，在调用栈所有调用任务执行完毕后，会马上执行
+- setTimeout之类的api方法定义的callback进入宏任务队列中，
+- 故微任务永远在宏任务之前执行
+-------
+**Generator 异步方案**
+
+tips:
+- generator函数返回一个generator对象，数据结构为{ done, value }
+- generator函数内部良好的异步编程方案需要外界一个co函数的帮忙
+-----
+**Async Await**
+- Async 关键字修饰的函数可以使用 await 关键字，起到类似于Generator 函数的 yield的作用，且无需外界调用，内部自动等待执行。
+
+------
+**课后题**

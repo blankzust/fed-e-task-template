@@ -18,6 +18,7 @@
   "homepage": "https://github.com/blankzust/fed-e-task-template#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
+    "flow-bin": "^0.125.1",
     "node-monitor": "^0.3.11",
     "nodemon": "^2.0.4"
   },
