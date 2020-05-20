@@ -20,7 +20,8 @@
     "bluebird": "^3.7.2",
     "flow-bin": "^0.125.1",
     "node-monitor": "^0.3.11",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.3"
   },
   "devDependencies": {
     "html-webpack-plugin": "^4.3.0",
