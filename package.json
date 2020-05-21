@@ -17,10 +17,13 @@
   },
   "homepage": "https://github.com/blankzust/fed-e-task-template#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.152",
     "bluebird": "^3.7.2",
     "flow-bin": "^0.125.1",
+    "lodash": "^4.17.15",
     "node-monitor": "^0.3.11",
     "nodemon": "^2.0.4",
+    "query-string": "^6.12.1",
     "typescript": "^3.9.3"
   },
   "devDependencies": {
