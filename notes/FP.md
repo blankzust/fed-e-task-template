@@ -213,3 +213,150 @@ console.log(fp.map(parseInt, ["20", "10", "3"])) // 打印出[ 20, 10, 4 ]
 - 不需要指明处理的函数
 - 只需要合成运算过程
 - 需要定义一些辅助的基本运算函数
+
+----
+## 函子（functor）
+- 函子是一个容器：包含值和值的变形关系
+- 函子必须有map方法，map方法可以运行一个函数对值进行处理
+
+```ts
+// 函子的标准格式
+class FunctorName {
+    constructor (value: any) {
+        // 对this._value赋值操作
+    }
+    static of(value: any) {
+        // 返回新的函子
+        // 工厂静态方法
+    }
+    map(fn: Function) {
+        // 对this._value进行变形操作
+        // 返回新的函子，不直接返回值
+    }
+}
+```
+
+### Maybe函子
+
+- maybe函子用来解决空值错误的副作用
+- **缺陷：**maybe函子无法准确判断是哪一个变形处理出现的空值
+
+```ts
+// maybe函子
+import fp from 'lodash/fp'
+class Maybe {
+  _value?: string
+  constructor(value?: string) {
+    this._value = value
+  }
+
+  static of(value: any) {
+    return new Maybe(value)
+  }
+
+  map(fn: Function) {
+    return this.isNothing()?Maybe.of(this._value):Maybe.of(fn(this._value))
+  }
+
+  isNothing() {
+    return this._value === undefined || this._value === null
+  }
+}
+
+const x = new Maybe("hello world");
+x.map((item: string) => item.toUpperCase())
+
+console.log(x);
+
+const y = new Maybe(undefined);
+y.map((item: string) => item.toUpperCase())
+
+console.log(y)
+```
+
+### Either函子
+
+- Either函子由两个函子组成，一个函子（Right）记录正确信息，一个函子（Left）记录错误信息
+
+```ts
+import { parse } from "querystring";
+
+class Right {
+  private _value: any
+  constructor(value: any) {
+    this._value = value;
+  }
+  static of(value: any) {
+    return new Right(value)
+  }
+  map(fn: Function) {
+    return Right.of(fn(this._value))
+  }
+}
+
+class Left {
+  private _value: any
+  constructor(value: any) {
+    this._value = value;
+  }
+  static of(value: any) {
+    return new Left(value)
+  }
+  map(fn: Function) {
+    return Left.of(this._value)
+  }
+}
+
+function parseJSON(val: string) {
+  try {
+    return Right.of(JSON.parse(val))
+  } catch (e) {
+    return Left.of({ err: e.message })
+  }
+}
+
+const r = parseJSON("{ name: 1 }")
+
+console.log(r)
+
+const r2 = parseJSON('{ "name": "zsf" }')
+            .map((item: any) => item.name.toUpperCase())
+
+console.log(r2)
+```
+
+### IO函子
+
+- 内部的_value是函数
+- 可以延迟_value的执行，当执行的时候才会引入副作用，是一种甩锅方式
+
+```ts
+import fp = require("lodash/fp")
+class IO {
+  private _value: (...args: Array<any>) => any
+  constructor(fn: (...args: Array<any>) => any) {
+    this._value = fn;
+  }
+  static of(value: any) {
+    return new IO(() => value)
+  }
+  run() {
+    return this._value();
+  }
+  map(fn: (...args: Array<any>) => any) {
+    return new IO(fp.flowRight(fn, this._value))
+  }
+}
+
+const io = IO.of(process).map((p: NodeJS.Process) => p.execPath)
+console.log(io.run());
+```
+
+### Task函子
+
+- 作用：用来处理异步任务
+- 特点：map方法为函数参数提供了resolve和reject入参，类似promise，通过调用resolve和reject来达到状态终止的作用
+
+### Monad函子
+
+- 作用:

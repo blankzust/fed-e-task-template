@@ -5,7 +5,7 @@ function sum(a: number, b: number, c: number) {
 }
 
 const currysum = _.curry(sum)
-// console.log(currysum(1)(2)(3))
+console.log(currysum(1)(2)(3))
 
 // 实现一个curry
 function curry(fn: Function) : Function {
