@@ -68,4 +68,11 @@ any并不安全
 **类型断言**
 - 类型断言不是类型转换，编译过后相关代码会消失
 - as
-- 
+
+
+----
+**typeScript的模块处理**
+- 需要用到import关键字，区别于普通的js
+```ts
+import _ = require("lodash")
+```

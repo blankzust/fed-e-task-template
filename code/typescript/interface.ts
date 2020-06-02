@@ -17,3 +17,6 @@ function printPost(post: Post) {
 interface Cache {
     [key: string]: string
 }
+
+const obj: Cache = {}
+obj["1"] = "asdasd"

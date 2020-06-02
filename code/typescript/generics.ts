@@ -8,7 +8,7 @@ function createStringArray(length: number, value: string): string[] {
 }
 
 function createArray<T>(length: number, value: T): T[] {
-    return Array(number).find(value)
+    return Array(length).fill(value)
 }
 
 var strArr = createArray<string>(9, "nkjh");

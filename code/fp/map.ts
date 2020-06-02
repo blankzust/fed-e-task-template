@@ -10,3 +10,6 @@ const map: (array: Array<any>, fn: Function) => Array<any> = (array, fn) => {
 
 
 console.log(map([1,2,3,4], (item: any) => { return `${item}` }))
+function sssa (arr) {
+
+}

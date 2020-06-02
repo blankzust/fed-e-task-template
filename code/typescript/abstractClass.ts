@@ -15,3 +15,5 @@ class Monkey extends Animal {
         throw new Error("Method not implemented.")
     }
 }
+
+const monkey = new Monkey();
