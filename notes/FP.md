@@ -359,4 +359,4 @@ console.log(io.run());
 
 ### Monad函子
 
-- 作用:
+- 特点
